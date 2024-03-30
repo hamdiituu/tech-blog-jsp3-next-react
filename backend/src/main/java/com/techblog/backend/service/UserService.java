@@ -2,7 +2,6 @@ package com.techblog.backend.service;
 
 import org.springframework.stereotype.Service;
 
-import com.techblog.backend.constant.RoleEnum;
 import com.techblog.backend.dto.user.RegisterUserDTO;
 import com.techblog.backend.model.User;
 import com.techblog.backend.repository.UserRepository;
