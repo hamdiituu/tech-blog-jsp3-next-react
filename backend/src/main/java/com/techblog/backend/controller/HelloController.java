@@ -1,4 +1,4 @@
-package com.techblog.backend.controllers;
+package com.techblog.backend.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
