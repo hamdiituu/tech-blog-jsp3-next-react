@@ -3,7 +3,7 @@ package com.techblog.backend.service;
 import org.springframework.stereotype.Service;
 
 import com.techblog.backend.constant.RoleEnum;
-import com.techblog.backend.dto.user.RegisterUserDto;
+import com.techblog.backend.dto.user.RegisterUserDTO;
 import com.techblog.backend.model.User;
 import com.techblog.backend.repository.UserRepository;
 
@@ -15,14 +15,19 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void registerUser(RegisterUserDto registerUserDto){
+    public void registerUser(RegisterUserDTO registerUserDTO){
         User user = new User();
-        user.setEmail(registerUserDto.getEmail());
-        user.setUsername(registerUserDto.getUsername());
+        user.setEmail(registerUserDTO.getEmail());
+        user.setUsername(registerUserDTO.getUsername());
         // TODO: password hash required
-        user.setPassword(registerUserDto.getPassword());
-        user.setRole(RoleEnum.User.getRoleName());
-        user.setEnabled(true);
+        user.setPassword(registerUserDTO.getPassword());
+        user.setFirstname(registerUserDTO.getFirstname());
+        user.setLastname(registerUserDTO.getLastname());
+
+
+        //user.setRole(RoleEnum.User.getRoleName());
+        // user.setEnabled(true);
+
         
         userRepository.save(user);
     }
