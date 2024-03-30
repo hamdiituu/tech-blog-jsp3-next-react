@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "admin"
+		},
+		{
+			"path": "backend"
+		},
+		{
+			"path": "docker"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}
