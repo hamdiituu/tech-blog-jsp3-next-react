@@ -1,8 +1,7 @@
-import Footer from "@/layout/partial/Footer";
-import Navbar from "@/layout/partial/Navbar";
-import PageTitle from "@/layout/partial/PageTitle";
-import ScrollToTop from "@/layout/partial/ScrollToTop";
-import Head from "next/head";
+import Breadcrumb from "@/component/Breadcrumb";
+import Footer from "@/component/Footer";
+import Navbar from "@/component/Navbar";
+import ScrollToTop from "@/component/ScrollToTop";
 
 export const metadata = {
   title: "Techblog 🤩",
@@ -45,9 +44,9 @@ export default function RootLayout({
       <body>
         <div id="wrapper">
           <Navbar />
-          <PageTitle />
+          <div className="page-wrapper">{children}</div>
 
-          <section className="section wb">
+          {/* <section className="section wb">
             <div className="container">
               <div className="row">
                 <div className="col-lg-12">
@@ -55,7 +54,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
           <Footer />
 

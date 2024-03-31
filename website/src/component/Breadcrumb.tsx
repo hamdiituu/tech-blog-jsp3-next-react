@@ -1,4 +1,4 @@
-export default function PageTitle() {
+export default function Breadcrumb() {
   return (
     <div className="page-title lb single-wrapper">
       <div className="container">
