@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "docker"
+		},
+		{
+			"path": "website"
+		},
+		{
+			"path": "../../Downloads/htmldesign-techblog/tech-blog"
 		}
 	],
 	"settings": {
