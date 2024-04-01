@@ -29,17 +29,17 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link href="/css/bootstrap.css" rel="stylesheet" />
 
-        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <link href="/css/font-awesome.min.css" rel="stylesheet" />
 
-        <link href="style.css" rel="stylesheet" />
+        <link href="/style.css" rel="stylesheet" />
 
-        <link href="css/responsive.css" rel="stylesheet" />
+        <link href="/css/responsive.css" rel="stylesheet" />
 
-        <link href="css/colors.css" rel="stylesheet" />
+        <link href="/css/colors.css" rel="stylesheet" />
 
-        <link href="css/version/tech.css" rel="stylesheet" />
+        <link href="/css/version/tech.css" rel="stylesheet" />
       </head>
       <body>
         <div id="wrapper">
@@ -60,10 +60,10 @@ export default function RootLayout({
 
           <ScrollToTop />
         </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/tether.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/tether.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/custom.js"></script>
       </body>
     </html>
   );

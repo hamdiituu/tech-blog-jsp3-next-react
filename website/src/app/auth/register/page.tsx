@@ -1,14 +1,14 @@
 import Breadcrumb from "@/component/Breadcrumb";
 
-export default function ContactUs() {
+export default function Register() {
   return (
     <>
       <Breadcrumb
-        title="Contact Us"
+        title="Register"
         desription="Nulla felis eros, varius sit amet volutpat non"
         breadcrumbs={[
           { title: "Home", path: "/" },
-          { title: "Contact US", path: "/contact-us", active: true },
+          { title: "Register", path: "/register", active: true },
         ]}
       />
       <div className="section wb">
