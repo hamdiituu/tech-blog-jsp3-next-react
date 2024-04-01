@@ -1,4 +1,3 @@
-import Breadcrumb from "@/component/Breadcrumb";
 import Footer from "@/component/Footer";
 import Navbar from "@/component/Navbar";
 import ScrollToTop from "@/component/ScrollToTop";

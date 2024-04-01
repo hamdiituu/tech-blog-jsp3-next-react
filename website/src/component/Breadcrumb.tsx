@@ -12,7 +12,7 @@ interface Props {
 
 export default function Breadcrumb(props: Props) {
   return (
-    <div className="page-title mt-5">
+    <div className="page-title lb single-wrapper">
       <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">

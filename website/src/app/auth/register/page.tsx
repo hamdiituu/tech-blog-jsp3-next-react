@@ -8,7 +8,7 @@ export default function Register() {
         desription="Nulla felis eros, varius sit amet volutpat non"
         breadcrumbs={[
           { title: "Home", path: "/" },
-          { title: "Register", path: "/register", active: true },
+          { title: "Register", path: "/auth/register", active: true },
         ]}
       />
       <div className="section wb">

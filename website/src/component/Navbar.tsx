@@ -10,7 +10,7 @@ export default function Navbar(){
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="tech-index.html">Home</a>
+                            <a className="nav-link" href="/">Home</a>
                         </li>
                         <li className="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
                             <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
@@ -378,7 +378,7 @@ export default function Navbar(){
                             <a className="nav-link" href="tech-category-03.html">Reviews</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="tech-contact.html">Contact Us</a>
+                            <a className="nav-link" href="/contact-us">Contact Us</a>
                         </li>
                     </ul>
                     <ul className="navbar-nav mr-2">

@@ -3,8 +3,10 @@
 
 export default function Home() {
   return (
-    <div>
-      <h1>Hello Techblog</h1>
+    <div className="section wb">
+      <div className="container">
+        💪🏻
+      </div>
     </div>
   );
 }
