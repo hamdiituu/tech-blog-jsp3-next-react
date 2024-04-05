@@ -26,7 +26,6 @@ public class UserService {
 
         //user.setRole(RoleEnum.User.getRoleName());
         // user.setEnabled(true);
-
         
         userRepository.save(user);
     }

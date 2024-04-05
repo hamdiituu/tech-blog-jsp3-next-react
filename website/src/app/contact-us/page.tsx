@@ -4,11 +4,11 @@ export default function ContactUs() {
   return (
     <>
       <Breadcrumb
-        title="Contact Us"
-        desription="Nulla felis eros, varius sit amet volutpat non"
+        title="İletişim"
+        desription="Bizimle iletişime geçebilirsiniz"
         breadcrumbs={[
-          { title: "Home", path: "/" },
-          { title: "Contact US", path: "/contact-us", active: true },
+          { title: "Anasayfa", path: "/" },
+          { title: "İletişim", path: "/contact-us", active: true },
         ]}
       />
       <div className="section wb">

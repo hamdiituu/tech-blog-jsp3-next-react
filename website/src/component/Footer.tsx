@@ -14,8 +14,8 @@ export default function Footer() {
                   />
                 </a>
                 <p>
-                  Tech Blog is a technology blog, we sharing marketing, news and
-                  gadget articles.
+                  Tech Blog bir teknoloji blogudur; pazarlama, haber ve gadget
+                  makalelerini paylaşıyoruz.
                 </p>
                 <div className="social">
                   <a
@@ -67,10 +67,10 @@ export default function Footer() {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter your email address"
+                      placeholder="E-posta adresinizi giriniz"
                     />
                     <button type="submit" className="btn btn-primary">
-                      SUBMIT
+                      Beni Haberdar Et
                     </button>
                   </form>
                 </div>
@@ -80,7 +80,7 @@ export default function Footer() {
 
           <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div className="widget">
-              <h2 className="widget-title">Popular Categories</h2>
+              <h2 className="widget-title">Popüler Kategoriler</h2>
               <div className="link-widget">
                 <ul>
                   <li>
@@ -142,10 +142,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-md-12 text-center">
             <br />
-            <div className="copyright">
-              &copy; Tech Blog. Design:{" "}
-             
-            </div>
+            <div className="copyright">@hamdiituu </div>
           </div>
         </div>
       </div>

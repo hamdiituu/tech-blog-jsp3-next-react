@@ -10,10 +10,10 @@ export default function Navbar(){
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Home</a>
+                            <a className="nav-link" href="/">Anasayfa</a>
                         </li>
                         <li className="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
-                            <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
+                            <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Haberler</a>
                             <ul className="dropdown-menu megamenu" aria-labelledby="dropdown01">
                                 <li>
                                     <div className="container">
@@ -369,16 +369,16 @@ export default function Navbar(){
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="tech-category-01.html">Gadgets</a>
+                            <a className="nav-link" href="tech-category-01.html">Araçlar</a>
                         </li>                   
                         <li className="nav-item">
-                            <a className="nav-link" href="tech-category-02.html">Videos</a>
+                            <a className="nav-link" href="tech-category-02.html">Videolar</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="tech-category-03.html">Reviews</a>
+                            <a className="nav-link" href="tech-category-03.html">Yorumlar</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/contact-us">Contact Us</a>
+                            <a className="nav-link" href="/contact-us">İletişim</a>
                         </li>
                     </ul>
                     <ul className="navbar-nav mr-2">
