@@ -15,25 +15,23 @@ export default function ContactUs() {
         <div className="container">
           <div className="row">
             <div className="col-lg-5">
-              <h4>Who we are</h4>
+              <h4>Biz Kimiz</h4>
               <p>
-                Tech Blog is a personal blog for handcrafted, cameramade
-                photography content, fashion styles from independent creatives
-                around the world.
+                Teknolojiyi takip eden bir grup arkadaşız. Teknolojik aletleri
+                ve inceliyoruz ve sizlere şeffaf bir şekilde size iletiyoruz.
               </p>
 
-              <h4>How we help?</h4>
+              <h4>Nasıl yardımcı oluyoruz?</h4>
               <p>
-                Etiam vulputate urna id libero auctor maximus. Nulla dignissim
-                ligula diam, in sollicitudin ligula congue quis turpis dui urna
-                nibhs.{" "}
+                Sizlerin geliştirdiği teknolojileri/aletleri inceleyerek
+                kullanıcılarla buluşturuyoruz. Ürünlerini son kullanıcı
+                açısından detaylı bir şekilde inceliyoruz.
               </p>
 
-              <h4>Pre-Sale Question</h4>
+              <h4>Satış Öncesi Soru</h4>
               <p>
-                Fusce dapibus nunc quis quam tempor vestibulum sit amet
-                consequat enim. Pellentesque blandit hendrerit placerat.
-                Integertis non.
+                Ürünlerinizi önceden kullanılarla buluşturarak tüm sorulara
+                cevap arıyoruz ve sizlere ön satış imkanı sağlıyoruz.
               </p>
             </div>
             <div className="col-lg-7">
@@ -41,29 +39,29 @@ export default function ContactUs() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Your name"
+                  placeholder="Adınız"
                 />
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Email address"
+                  placeholder="E-posta adresi"
                 />
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Phone"
+                  placeholder="Telefon numarası"
                 />
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Subject"
+                  placeholder="Konu"
                 />
                 <textarea
                   className="form-control"
-                  placeholder="Your message"
+                  placeholder="Mesaj"
                 ></textarea>
                 <button type="submit" className="btn btn-primary">
-                  Send <i className="fa fa-envelope-open-o"></i>
+                  Gönder <i className="fa fa-envelope-open-o"></i>
                 </button>
               </form>
             </div>
