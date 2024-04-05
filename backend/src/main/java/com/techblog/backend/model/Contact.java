@@ -3,34 +3,34 @@ package com.techblog.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Entity
-@Table(name = "users")
+@Table(name = "contact")
 @Getter
 @Setter
 @ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
-    private String firstname;
+    private String name;
 
     @Column(nullable = false)
-    private String lastname;
-    
-    @Column(nullable = false, unique = true)
-    private String username;
-    
-    @Column(nullable = false, unique = true)
     private String email;
-    
-    @Column(nullable = false)
-    private String password;
 
+    @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false)
+    private String subject;
+
+    @Column(nullable = false)
+    private String message;
+
+    @Column(nullable = false)
+    private boolean isReaded;
 }
