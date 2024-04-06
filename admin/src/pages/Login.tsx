@@ -18,7 +18,7 @@ export default function Login() {
                   <fieldset>
                     <div className="field">
                       <label className="label_field">E-posta adresi</label>
-                      <input type="email" name="email" placeholder="exp@techblog.com" />
+                      <input type="email" name="email" placeholder="ornek@eposta.com" />
                     </div>
                     <div className="field">
                       <label className="label_field">Şifre</label>
