@@ -19,11 +19,13 @@ export default function ContactUs() {
       if (response.status != 201) {
         throw new Error(`${response.data}`);
       }
+      setError(null);
       setMessage(response.data);
-      // TODO: form clear required
+      (event.target as HTMLFormElement).reset();
     } catch (error) {
       const typedError: any = error;
       setError(typedError.message || "İşlem esnasında bir hata oluştu.");
+      setMessage(null);
     } finally {
       setIsLoading(false);
     }
