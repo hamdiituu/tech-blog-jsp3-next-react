@@ -13,11 +13,11 @@
 			"path": "website"
 		},
 		{
-			"path": "../../Downloads/htmldesign-techblog/tech-blog"
+			"path": "templates"
 		}
 	],
 	"settings": {
 		"java.configuration.updateBuildConfiguration": "interactive",
-		"liveServer.settings.multiRootWorkspaceName": "tech-blog"
+		"liveServer.settings.multiRootWorkspaceName": "templates"
 	}
 }
