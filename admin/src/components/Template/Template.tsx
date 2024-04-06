@@ -1,4 +1,5 @@
 import { Copyright, Sidebar, Topbar } from "./partials";
+import { Outlet } from "react-router-dom";
 
 export default function Template() {
   return (
@@ -10,9 +11,7 @@ export default function Template() {
           <Topbar />
           <div className="midde_cont">
             <div className="container-fluid">
-              {/* 
-                  Content
-                */}
+              <Outlet />
               <Copyright />
             </div>
           </div>
