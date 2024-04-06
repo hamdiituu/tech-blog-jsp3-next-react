@@ -1,6 +1,34 @@
+"use client";
+
+import { FormEvent, useState } from "react";
 import Breadcrumb from "@/component/Breadcrumb";
+import { post } from "@/config/api";
 
 export default function ContactUs() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      setIsLoading(true);
+      const formData = new FormData(event.currentTarget);
+      const response = await post<string>("/api/v1/contact", formData);
+
+      if (response.status != 201) {
+        throw new Error(`${response.data}`);
+      }
+      setMessage(response.data);
+      // TODO: form clear required
+    } catch (error) {
+      const typedError: any = error;
+      setError(typedError.message || "İşlem esnasında bir hata oluştu.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <Breadcrumb
@@ -35,33 +63,73 @@ export default function ContactUs() {
               </p>
             </div>
             <div className="col-lg-7">
-              <form className="form-wrapper">
+              {error && (
+                <div
+                  className="alert alert-warning alert-dismissible fade show"
+                  role="alert"
+                >
+                  <strong>Bir hata oluştu!</strong>
+                  <br />
+                  {error}
+                </div>
+              )}
+              {message && (
+                <div
+                  className="alert alert-success alert-dismissible fade show"
+                  role="alert"
+                >
+                  {message}
+                </div>
+              )}
+              <form onSubmit={onSubmit} className="form-wrapper">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Adınız"
+                  required
+                  name="name"
+                  disabled={isLoading}
                 />
                 <input
-                  type="text"
+                  type="email"
                   className="form-control"
                   placeholder="E-posta adresi"
+                  required
+                  name="email"
+                  disabled={isLoading}
                 />
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Telefon numarası"
+                  required
+                  name="phone"
+                  disabled={isLoading}
                 />
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Konu"
+                  required
+                  name="subject"
+                  maxLength={60}
+                  disabled={isLoading}
                 />
                 <textarea
                   className="form-control"
                   placeholder="Mesaj"
+                  required
+                  name="message"
+                  maxLength={140}
+                  disabled={isLoading}
                 ></textarea>
-                <button type="submit" className="btn btn-primary">
-                  Gönder <i className="fa fa-envelope-open-o"></i>
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  {isLoading ? "Gönderiliyor" : "Gönder"}
+                  <i className={`fa fa-envelope${!isLoading && "-open"}-o`}></i>
                 </button>
               </form>
             </div>
