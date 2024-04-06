@@ -1,13 +1,6 @@
-import Copyright from "./partials/Copyright";
-import PageTitle from "./partials/PageTitle";
-import Sidebar from "./partials/Sidebar";
-import Topbar from "./partials/Topbar";
+import { Copyright, Sidebar, Topbar } from "./partials";
 
-interface TemplateProps {
-  pageTitle: string;
-}
-
-export default function Template(props: TemplateProps) {
+export default function Template() {
   return (
     <div className="full_container">
       <div className="inner_container">
@@ -17,8 +10,6 @@ export default function Template(props: TemplateProps) {
           <Topbar />
           <div className="midde_cont">
             <div className="container-fluid">
-              {props.pageTitle && <PageTitle title={props.pageTitle} />}
-
               {/* 
                   Content
                 */}

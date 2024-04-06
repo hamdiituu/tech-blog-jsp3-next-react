@@ -1,7 +1,9 @@
-import Copyright from "../../components/Template/partials/Copyright";
-import PageTitle from "../../components/Template/partials/PageTitle";
-import Sidebar from "../../components/Template/partials/Sidebar";
-import Topbar from "../../components/Template/partials/Topbar";
+import {
+  Copyright,
+  PageTitle,
+  Sidebar,
+  Topbar,
+} from "../components/Template/partials";
 
 export default function BlankPage() {
   return (
@@ -13,7 +15,7 @@ export default function BlankPage() {
           <Topbar />
           <div className="midde_cont">
             <div className="container-fluid">
-              <PageTitle title="Blank"/>
+              <PageTitle title="Blank" />
 
               {/* 
                   Content
