@@ -1,9 +1,13 @@
-import Copyright from "../../components/Template/partials/Copyright";
-import PageTitle from "../../components/Template/partials/PageTitle";
-import Sidebar from "../../components/Template/partials/Sidebar";
-import Topbar from "../../components/Template/partials/Topbar";
+import Copyright from "./partials/Copyright";
+import PageTitle from "./partials/PageTitle";
+import Sidebar from "./partials/Sidebar";
+import Topbar from "./partials/Topbar";
 
-export default function BlankPage() {
+interface TemplateProps {
+  pageTitle: string;
+}
+
+export default function Template(props: TemplateProps) {
   return (
     <div className="full_container">
       <div className="inner_container">
@@ -13,7 +17,7 @@ export default function BlankPage() {
           <Topbar />
           <div className="midde_cont">
             <div className="container-fluid">
-              <PageTitle title="Blank"/>
+              {props.pageTitle && <PageTitle title={props.pageTitle} />}
 
               {/* 
                   Content
