@@ -17,7 +17,7 @@ interface FilterBtn {
 interface ListRow<T> {
   field?: string;
   style?: string;
-  onRender?: (item: T) => React.FC;
+  onRender?: (item: T) => React.ReactElement;
 }
 
 interface DatalistProps<T> {
@@ -171,25 +171,28 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
 
                       <table className="table table-inbox table-hover">
                         <tbody>
-                          {props.items?.map((item) => (
-                            <tr>
+                          {props.items?.map((item, itemIndex: number) => (
+                            <tr key={itemIndex}>
                               {props.selectable && (
                                 <td className="inbox-small-cells">
                                   <div className="custom-control custom-checkbox">
                                     <input
                                       type="checkbox"
                                       className="custom-control-input"
-                                      id="customCheck1"
+                                      id={`checbox-datalist-${itemIndex}`}
                                     />
                                     <label
                                       className="custom-control-label"
-                                      htmlFor="customCheck1"
+                                      htmlFor={`checbox-datalist-${itemIndex}`}
                                     ></label>
                                   </div>
                                 </td>
                               )}
-                              {props.listRows?.map((row) => (
-                                <td className={`view-message ${row.style}`}>
+                              {props.listRows?.map((row, rowIndex) => (
+                                <td
+                                  key={rowIndex}
+                                  className={`view-message ${row.style}`}
+                                >
                                   {row.onRender
                                     ? row.onRender(item)
                                     : // @ts-ignore
