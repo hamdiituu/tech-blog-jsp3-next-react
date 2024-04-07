@@ -1,4 +1,4 @@
-import Datalist from "../components/Datalist";
+import Datalist from "../../components/Datalist";
 
 interface Contact {
   id: number;
@@ -26,7 +26,7 @@ const generateSampleData = (): Contact[] => {
 
 const sampleData: Contact[] = generateSampleData();
 
-const ContactForms = () => {
+const ContactFormsPage = () => {
   return (
     <Datalist
       items={sampleData}
@@ -61,4 +61,4 @@ const ContactForms = () => {
   );
 };
 
-export default ContactForms;
+export default ContactFormsPage;

@@ -1,5 +1,5 @@
-export { default as Blank } from "./Blank";
-export { default as Login } from "./Login";
-export { default as ContactForms } from "./ContactForms";
-export { default as Dashboard } from "./Dashboard";
-export { default as Notfound } from "./NotFound";
+export { default as BlankPage } from "./Blank/BlankPage";
+export { default as LoginPage } from "./Login/LoginPage";
+export { default as ContactFormsPage } from "./ContactForms/ContactFormsPage";
+export { default as DashboardPage } from "./Dashboard/DashboardPage";
+export { default as NotFoundPage } from "./Error/NotFoundPage";

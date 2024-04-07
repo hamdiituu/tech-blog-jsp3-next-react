@@ -1,4 +1,4 @@
-export default function NotFound() {
+const NotFoundPage = () => {
   return (
     <div className="full_container">
       <div className="container">
@@ -15,7 +15,10 @@ export default function NotFound() {
             </div>
             <br />
             <h3>Sayfa Bulunamadı!</h3>
-            <p>Paneli kullanmaya devam etmek için aşağıdaki adımları takip ediniz.</p>
+            <p>
+              Paneli kullanmaya devam etmek için aşağıdaki adımları takip
+              ediniz.
+            </p>
             <div className="center">
               <a className="main_bt" href="/">
                 Panele Dön
@@ -26,4 +29,6 @@ export default function NotFound() {
       </div>
     </div>
   );
-}
+};
+
+export default NotFoundPage;

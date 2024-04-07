@@ -1,8 +1,14 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Blank, ContactForms, Login, Dashboard, Notfound } from "./pages";
+import {
+  BlankPage,
+  ContactFormsPage,
+  LoginPage,
+  DashboardPage,
+  NotFoundPage,
+} from "./pages";
 import Template from "./components/Template";
-import { AuthProvider } from "./contexts/Auth";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const root = createRoot(document.getElementById("root")!);
 
@@ -14,15 +20,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        element: <DashboardPage />,
       },
       {
         path: "blank",
-        element: <Blank />,
+        element: <BlankPage />,
       },
       {
         path: "contact-forms",
-        element: <ContactForms />,
+        element: <ContactFormsPage />,
       },
     ],
   },
@@ -32,14 +38,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <Login />,
+        element: <LoginPage />,
       },
     ],
   },
   {
     id: "notFound",
     path: "*",
-    element: <Notfound />,
+    element: <NotFoundPage />,
   },
 ]);
 

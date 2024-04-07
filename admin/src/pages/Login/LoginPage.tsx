@@ -1,4 +1,4 @@
-export default function Login() {
+const LoginPage = () => {
   return (
     <div className="inner_page login">
       <div className="full_container">
@@ -18,7 +18,11 @@ export default function Login() {
                   <fieldset>
                     <div className="field">
                       <label className="label_field">E-posta adresi</label>
-                      <input type="email" name="email" placeholder="ornek@eposta.com" />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="ornek@eposta.com"
+                      />
                     </div>
                     <div className="field">
                       <label className="label_field">Şifre</label>
@@ -51,4 +55,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;
