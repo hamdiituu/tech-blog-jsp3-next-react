@@ -2,7 +2,7 @@ interface PageTitleProps {
   title: string;
 }
 
-export default function PageTitle(props: PageTitleProps) {
+const PageTitle = (props: PageTitleProps) => {
   return (
     <div className="row column_title">
       <div className="col-md-12">
@@ -12,4 +12,6 @@ export default function PageTitle(props: PageTitleProps) {
       </div>
     </div>
   );
-}
+};
+
+export default PageTitle;
