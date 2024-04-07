@@ -33,14 +33,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    id: "auth",
-    path: "/auth",
-    children: [
-      {
-        path: "login",
-        element: <LoginPage />,
-      },
-    ],
+    path: "login",
+    element: <LoginPage />,
   },
   {
     id: "notFound",
