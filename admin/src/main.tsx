@@ -1,20 +1,50 @@
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Blank, ContactForms, Login, Dashboard, Notfound } from "./pages";
-import Template from "./components/Template/Template";
+import Template from "./components/Template";
+import { AuthProvider } from "./contexts/Auth";
 
 const root = createRoot(document.getElementById("root")!);
 
+const router = createBrowserRouter([
+  {
+    id: "root",
+    path: "/",
+    element: <Template />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "blank",
+        element: <Blank />,
+      },
+      {
+        path: "contact-forms",
+        element: <ContactForms />,
+      },
+    ],
+  },
+  {
+    id: "auth",
+    path: "/auth",
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+    ],
+  },
+  {
+    id: "notFound",
+    path: "*",
+    element: <Notfound />,
+  },
+]);
+
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Template />}>
-        <Route index element={<Dashboard />} />
-        <Route path="/blank" element={<Blank />} />
-        <Route path="/contact-forms" element={<ContactForms />} />
-      </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="*" element={<Notfound />} />
-    </Routes>
-  </BrowserRouter>
+  <AuthProvider>
+    <RouterProvider router={router} fallbackElement={<p>Yükleniyor...</p>} />
+  </AuthProvider>
 );

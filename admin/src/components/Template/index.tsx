@@ -1,7 +1,7 @@
 import { Copyright, Sidebar, Topbar } from "./partials";
 import { Outlet } from "react-router-dom";
 
-export default function Template() {
+const Template = () => {
   return (
     <div className="full_container">
       <div className="inner_container">
@@ -19,4 +19,6 @@ export default function Template() {
       </div>
     </div>
   );
-}
+};
+
+export default Template;

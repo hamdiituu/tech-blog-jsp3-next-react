@@ -2783,9 +2783,20 @@ ul.inbox-pagination li {
     padding: 5px 10px;
 }
 
-.inbox-pagination a.np-btn {
+.inbox-pagination button.np-btn {
     background: #1ed085;
     border: 1px solid #1ed085;
+    border-radius: 0;
+    color: #fff;
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 20px;
+}
+
+
+.inbox-pagination button.np-btn-disable {
+    background: #626262;
+    border: 1px solid #626262;
     border-radius: 0;
     color: #fff;
     display: inline-block;
@@ -2802,9 +2813,10 @@ ul.inbox-pagination li {
     padding: 0;
 }
 
-.inbox-pagination a.np-btn {
+.inbox-pagination button.np-btn {
     margin-left: 5px;
 }
+
 
 .inbox-pagination li span {
     display: inline-block;
