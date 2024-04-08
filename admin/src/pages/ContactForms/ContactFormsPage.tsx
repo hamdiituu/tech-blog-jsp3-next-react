@@ -7,7 +7,7 @@ import { TableRequest } from "../../types/ApiTypes";
 const ContactFormsPage = () => {
   const [req, setReq] = useState<TableRequest>({
     page: 0,
-    limit: 100,
+    limit: 4,
     query: null,
   });
   const { isLoading, data, error, refetch, isRefetching, isError } =
@@ -17,6 +17,10 @@ const ContactFormsPage = () => {
     <Datalist
       onSearched={(query) => {
         setReq({ ...req, query: query });
+      }}
+      onChangePage={(page) => {
+        console.log(page);
+        setReq({ ...req, page });
       }}
       isError={isError}
       error={error}

@@ -36,6 +36,7 @@ interface DatalistProps<T> {
   error?: any;
   isError?: boolean;
   onSearched?: (query: string | null) => void;
+  onChangePage?: (page: number) => void;
 }
 
 const Datalist = <T extends object>(props: DatalistProps<T>) => {
@@ -173,15 +174,49 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                         ))}
                         <ul className="unstyled inbox-pagination">
                           <li>
-                            <span>1-50 / {props.totalRecord}</span>
+                            <span>
+                              {props.totalRecord} kayıt içinden{" "}
+                              {props.items?.length} tanesi görüntüleniyor.
+                            </span>
                           </li>
                           <li>
-                            <button className="np-btn np-btn-disable">
+                            <button
+                              onClick={() => {
+                                if (props.onChangePage) {
+                                  props.onChangePage(
+                                    (props.currentPage ?? 1) - 1
+                                  );
+                                }
+                              }}
+                              disabled={props.currentPage == 0}
+                              className={`np-btn ${
+                                props.currentPage == 0
+                                  ? "np-btn-disable"
+                                  : "np-btn"
+                              }`}
+                            >
                               <i className="fa fa-angle-left pagination-left"></i>
                             </button>
                           </li>
                           <li>
-                            <button className="np-btn">
+                            <button
+                              onClick={() => {
+                                console.log("click");
+                                if (props.onChangePage) {
+                                  props.onChangePage(
+                                    (props.currentPage ?? 0) + 1
+                                  );
+                                }
+                              }}
+                              disabled={
+                                props.currentPage == (props.totalPage ?? 1) - 1
+                              }
+                              className={`np-btn ${
+                                props.currentPage == (props.totalPage ?? 1) - 1
+                                  ? "np-btn-disable"
+                                  : "np-btn"
+                              }`}
+                            >
                               <i className="fa fa-angle-right pagination-right"></i>
                             </button>
                           </li>
