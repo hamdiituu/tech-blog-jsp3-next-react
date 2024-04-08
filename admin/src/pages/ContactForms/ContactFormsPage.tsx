@@ -7,7 +7,7 @@ import { TableRequest } from "../../types/ApiTypes";
 const ContactFormsPage = () => {
   const [req, setReq] = useState<TableRequest>({
     page: 0,
-    limit: 4,
+    limit: 100,
     query: null,
   });
   const { isLoading, data, error, refetch, isRefetching, isError } =

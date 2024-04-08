@@ -134,12 +134,9 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                     <div className="inbox-body">
                       <div className="mail-option">
                         {props.filters?.map((filter, index) => (
-                          <div className="btn-group">
+                          <div key={index} className="btn-group">
                             <a
-                              key={index}
-                              data-toggle="dropdown"
                               className="btn mini blue "
-                              aria-expanded="false"
                               onClick={filter.onClick}
                             >
                               {filter.icon && (
@@ -175,7 +172,7 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                         <ul className="unstyled inbox-pagination">
                           <li>
                             <span>
-                              {props.totalRecord} kayıt içinden{" "}
+                              {props.totalRecord} kayıt içinden
                               {props.items?.length} tanesi görüntüleniyor.
                             </span>
                           </li>
@@ -262,7 +259,7 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                                 )}
                                 {props.listRows?.map((row, rowIndex) => (
                                   <td
-                                    key={rowIndex}
+                                    key={itemIndex * 10 + rowIndex}
                                     className={`view-message ${row.style}`}
                                   >
                                     {row.onRender
