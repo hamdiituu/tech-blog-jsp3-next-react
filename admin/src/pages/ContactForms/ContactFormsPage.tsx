@@ -22,6 +22,9 @@ const ContactFormsPage = () => {
         console.log(page);
         setReq({ ...req, page });
       }}
+      onSelect={(item : ContactForm)=>{
+        console.log(item);
+      }}
       isError={isError}
       error={error}
       items={data?.items}

@@ -37,6 +37,7 @@ interface DatalistProps<T> {
   isError?: boolean;
   onSearched?: (query: string | null) => void;
   onChangePage?: (page: number) => void;
+  onSelect?: (item: T) => void;
 }
 
 const Datalist = <T extends object>(props: DatalistProps<T>) => {
@@ -172,7 +173,7 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                         <ul className="unstyled inbox-pagination">
                           <li>
                             <span>
-                              {props.totalRecord} kayıt içinden
+                              {props.totalRecord} kayıt içinden{" "}
                               {props.items?.length} tanesi görüntüleniyor.
                             </span>
                           </li>
@@ -246,6 +247,11 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                                   <td className="inbox-small-cells">
                                     <div className="custom-control custom-checkbox">
                                       <input
+                                        onClick={() => {
+                                          if (props.onSelect) {
+                                            props.onSelect(item);
+                                          }
+                                        }}
                                         type="checkbox"
                                         className="custom-control-input"
                                         id={`checbox-datalist-${itemIndex}`}
