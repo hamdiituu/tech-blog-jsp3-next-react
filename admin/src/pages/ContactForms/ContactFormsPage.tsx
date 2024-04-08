@@ -1,43 +1,31 @@
 import Datalist from "../../components/Datalist";
-
-interface Contact {
-  id: number;
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
-const generateSampleData = (): Contact[] => {
-  const sampleData: Contact[] = [];
-
-  for (let i = 1; i <= 20; i++) {
-    sampleData.push({
-      id: i,
-      name: `Name ${i}`,
-      email: `email${i}@example.com`,
-      subject: `Subject ${i}`,
-      message: `Message ${i}`,
-    });
-  }
-
-  return sampleData;
-};
-
-const sampleData: Contact[] = generateSampleData();
+import { useFetchContactForms } from "./hooks/useContactForms";
+import ContactForm from "./types/ContactForm";
 
 const ContactFormsPage = () => {
+  const { isLoading, data, error } = useFetchContactForms({
+    page: 0,
+  });
+
   return (
     <Datalist
-      items={sampleData}
+      error={error}
+      items={data?.items}
       listRows={[
         { field: "id" },
         { field: "name" },
         { field: "email" },
-        { onRender: (item: Contact) => <span>{item.subject}</span> },
+        {
+          onRender: (item: ContactForm) => (
+            <span>{item.subject.substring(0, 20) + ".."}</span>
+          ),
+        },
       ]}
+      currentPage={data?.currentPage}
+      totalPage={data?.totalPage}
+      totalRecord={data?.totalRecord}
       selectable
-      loading={false}
+      loading={isLoading}
       searchable
       title="İletişim Formları"
       filters={[

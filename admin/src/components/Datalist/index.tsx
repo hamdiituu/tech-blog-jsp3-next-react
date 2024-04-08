@@ -33,6 +33,7 @@ interface DatalistProps<T> {
   listRows?: ListRow<T>[];
   selectable?: boolean;
   loading?: boolean;
+  error?: any;
 }
 
 const Datalist = <T extends object>(props: DatalistProps<T>) => {
@@ -169,6 +170,12 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                         </div>
                       )}
 
+                      {props.error && (
+                        <div className="alert alert-danger" role="alert">
+                          {props.error}
+                        </div>
+                      )}
+
                       <table className="table table-inbox table-hover">
                         <tbody>
                           {props.items?.map((item, itemIndex: number) => (
@@ -199,21 +206,6 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                                       item[`${row.field}`]}
                                 </td>
                               ))}
-                              {/* <td className="inbox-small-cells">
-                                <i className="fa fa-star"></i>
-                              </td>
-                              <td className="view-message  dont-show">
-                                PHPClass
-                              </td>
-                              <td className="view-message ">
-                                Added a new class: Login Class Fast Site
-                              </td>
-                              <td className="view-message  inbox-small-cells">
-                                <i className="fa fa-paperclip"></i>
-                              </td>
-                              <td className="view-message  text-right">
-                                9:27 AM
-                              </td> */}
                             </tr>
                           ))}
                         </tbody>

@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
 import {
   BlankPage,
   ContactFormsPage,
@@ -11,6 +12,16 @@ import Template from "./components/Template";
 import { AuthProvider } from "./contexts/AuthContext";
 
 const root = createRoot(document.getElementById("root")!);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 1,
+      cacheTime: 1000 * 60 * 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -45,6 +56,8 @@ const router = createBrowserRouter([
 
 root.render(
   <AuthProvider>
-    <RouterProvider router={router} fallbackElement={<p>Yükleniyor...</p>} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} fallbackElement={<p>Yükleniyor...</p>} />
+    </QueryClientProvider>
   </AuthProvider>
 );
