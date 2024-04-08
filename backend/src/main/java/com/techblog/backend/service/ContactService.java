@@ -38,7 +38,13 @@ public class ContactService {
     public TableResponseDTO<Contact> listPaginatedContactForms(TableRequestDTO tableRequestDTO) {
         TableResponseDTO<Contact> tableResponseDTO = new TableResponseDTO<Contact>();
         Pageable pageable = PageRequest.of(tableRequestDTO.getPage(), tableRequestDTO.getLimit());
-        Page<Contact> items = contactRepository.findAll(pageable);
+        Page<Contact> items;
+
+        if(tableRequestDTO.getQuery() != null){
+            items = contactRepository.findByRegex(tableRequestDTO.getQuery(), pageable);
+        }else{
+            items = contactRepository.findAll(pageable);
+        }
 
         tableResponseDTO.setLimit(tableRequestDTO.getLimit());
         tableResponseDTO.setCurrentPage(tableRequestDTO.getPage());

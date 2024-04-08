@@ -9,4 +9,5 @@ import lombok.*;
 public class TableRequestDTO {
     private int page = 0;
     private int limit = 100;
+    private String query = null;
 }
