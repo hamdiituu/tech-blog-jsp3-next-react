@@ -15,7 +15,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/v1/contact")
 @Tag(name = "Contact v1.0", description = "It is used for users to contact.")
-@CrossOrigin("*")
 public class ContactController {
 
     @Autowired
