@@ -1,9 +1,7 @@
 package com.techblog.backend.service;
 
-import java.util.List;
 import java.util.Optional;
 
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
