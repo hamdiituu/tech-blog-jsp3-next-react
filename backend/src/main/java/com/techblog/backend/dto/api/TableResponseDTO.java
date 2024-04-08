@@ -14,5 +14,5 @@ public class TableResponseDTO<T> {
     private Number currentPage;
     private Number totalPage;
     private Long totalRecord;
-    private String errorMessage = "";
+    private String errorMessage;
 }

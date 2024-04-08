@@ -1,6 +1,7 @@
 package com.techblog.backend.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.tomcat.util.bcel.Const;
 import org.springframework.data.domain.Page;
@@ -36,24 +37,28 @@ public class ContactService {
     }
 
     public TableResponseDTO<Contact> listPaginatedContactForms(TableRequestDTO tableRequestDTO) {
-        TableResponseDTO<Contact> tableResponseDTO = new TableResponseDTO<Contact>();
-        Pageable pageable = PageRequest.of(tableRequestDTO.getPage(), tableRequestDTO.getLimit());
-        Page<Contact> items;
+        TableResponseDTO<Contact> tableResponseDTO = new TableResponseDTO<>();
 
-        if(tableRequestDTO.getQuery() != null){
+        int page = Optional.ofNullable(tableRequestDTO.getPage()).orElse(0);
+        int limit = Optional.ofNullable(tableRequestDTO.getLimit()).orElse(100);
+
+        Pageable pageable = PageRequest.of(page, limit);
+
+        Page<Contact> items;
+        if (tableRequestDTO.getQuery() != null && !tableRequestDTO.getQuery().isEmpty()) {
             items = contactRepository.findByRegex(tableRequestDTO.getQuery(), pageable);
-        }else{
+        } else {
             items = contactRepository.findAll(pageable);
         }
 
-        tableResponseDTO.setLimit(tableRequestDTO.getLimit());
-        tableResponseDTO.setCurrentPage(tableRequestDTO.getPage());
-
-        tableResponseDTO.setTotalPage(Math.ceil(items.getTotalElements() / tableRequestDTO.getLimit()));
+        tableResponseDTO.setLimit(limit);
+        tableResponseDTO.setCurrentPage(page);
+        tableResponseDTO.setTotalPage(items.getTotalPages());
         tableResponseDTO.setTotalRecord(items.getTotalElements());
         tableResponseDTO.setItems(items.getContent());
 
         return tableResponseDTO;
+
     }
 
 }
