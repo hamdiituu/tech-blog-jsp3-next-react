@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 
 interface SideItem {
   onClick?: () => void;
@@ -34,10 +34,13 @@ interface DatalistProps<T> {
   selectable?: boolean;
   loading?: boolean;
   error?: any;
+  isError?: boolean;
+  onSearched?: (query: string | null) => void;
 }
 
 const Datalist = <T extends object>(props: DatalistProps<T>) => {
   const [processCount, setProcessCount] = useState<number>(0);
+  const [query, setQuery] = useState<string | null>(null);
 
   useEffect(() => {
     let intervalId: number;
@@ -50,6 +53,12 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
     return () => clearInterval(intervalId);
   }, [props.loading]);
 
+  const onSearchSubmit = () => {
+    if (props.onSearched) {
+      props.onSearched(query);
+    }
+  };
+
   return (
     <div className="col-md-12">
       <div className="white_shd full margin_bottom_30 mt-5">
@@ -60,8 +69,8 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                 <div className="mail-box">
                   {props.sideItems && (
                     <aside className="sm-side">
-                      {props.sideItems.map((sideItem) => (
-                        <ul className="nav nav-pills nav-stacked labels-category inbox-divider">
+                      {props.sideItems.map((sideItem,sideIndex) => (
+                        <ul  key={sideIndex} className="nav nav-pills nav-stacked labels-category inbox-divider">
                           {sideItem.label && (
                             <li>
                               <h5>
@@ -71,8 +80,8 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                               </h5>
                             </li>
                           )}
-                          {sideItem.children?.map((sideChild) => (
-                            <li>
+                          {sideItem.children?.map((sideChild,sideChildIndex) => (
+                            <li key={sideChildIndex}>
                               <a href="#" onClick={sideChild.onClick}>
                                 <i className="fa fa-circle"></i>{" "}
                                 {sideChild.label}
@@ -93,13 +102,21 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                         >
                           <div className="input-append">
                             <input
+                              name="query"
                               type="text"
                               className="sr-input"
                               placeholder={
                                 props.searchPlaceHolder ?? "Tablo içinde ara"
                               }
+                              onChange={(e) => {
+                                setQuery(e.target.value);
+                              }}
                             />
-                            <button className="btn sr-btn" type="button">
+                            <button
+                              className="btn sr-btn"
+                              type="button"
+                              onClick={onSearchSubmit}
+                            >
                               <i className="fa fa-search"></i>
                             </button>
                           </div>
@@ -108,9 +125,10 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                     </div>
                     <div className="inbox-body">
                       <div className="mail-option">
-                        {props.filters?.map((filter) => (
+                        {props.filters?.map((filter,index) => (
                           <div className="btn-group">
                             <a
+                              key={index}
                               data-toggle="dropdown"
                               className="btn mini blue "
                               aria-expanded="false"
@@ -131,8 +149,8 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                             </a>
                             {filter.items && (
                               <ul className="dropdown-menu">
-                                {filter.items.map((item) => (
-                                  <li style={{ cursor: "pointer" }}>
+                                {filter.items.map((item,itemIndex) => (
+                                  <li key={itemIndex} style={{ cursor: "pointer" }}>
                                     <a onClick={item.onClick}>
                                       <i className={item.icon}></i>
                                       {item.label}
@@ -161,7 +179,7 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                       </div>
 
                       {props.loading && (
-                        <div className="progress skill-bar mt-5">
+                        <div className="progress skill-bar mt-5 mb-5">
                           <div
                             className="progress-bar progress-bar-animated progress-bar-striped"
                             role="progressbar"
@@ -170,44 +188,46 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                         </div>
                       )}
 
-                      {props.error && (
+                      {props.isError && (
                         <div className="alert alert-danger" role="alert">
-                          {props.error}
+                          {props.error.message ?? props.error}
                         </div>
                       )}
 
                       <table className="table table-inbox table-hover">
                         <tbody>
-                          {props.items?.map((item, itemIndex: number) => (
-                            <tr key={itemIndex}>
-                              {props.selectable && (
-                                <td className="inbox-small-cells">
-                                  <div className="custom-control custom-checkbox">
-                                    <input
-                                      type="checkbox"
-                                      className="custom-control-input"
-                                      id={`checbox-datalist-${itemIndex}`}
-                                    />
-                                    <label
-                                      className="custom-control-label"
-                                      htmlFor={`checbox-datalist-${itemIndex}`}
-                                    ></label>
-                                  </div>
-                                </td>
-                              )}
-                              {props.listRows?.map((row, rowIndex) => (
-                                <td
-                                  key={rowIndex}
-                                  className={`view-message ${row.style}`}
-                                >
-                                  {row.onRender
-                                    ? row.onRender(item)
-                                    : // @ts-ignore
-                                      item[`${row.field}`]}
-                                </td>
-                              ))}
-                            </tr>
-                          ))}
+                          {props.items != null &&
+                            props.items?.length > 0 &&
+                            props.items?.map((item, itemIndex: number) => (
+                              <tr key={itemIndex}>
+                                {props.selectable && (
+                                  <td className="inbox-small-cells">
+                                    <div className="custom-control custom-checkbox">
+                                      <input
+                                        type="checkbox"
+                                        className="custom-control-input"
+                                        id={`checbox-datalist-${itemIndex}`}
+                                      />
+                                      <label
+                                        className="custom-control-label"
+                                        htmlFor={`checbox-datalist-${itemIndex}`}
+                                      ></label>
+                                    </div>
+                                  </td>
+                                )}
+                                {props.listRows?.map((row, rowIndex) => (
+                                  <td
+                                    key={rowIndex}
+                                    className={`view-message ${row.style}`}
+                                  >
+                                    {row.onRender
+                                      ? row.onRender(item)
+                                      : // @ts-ignore
+                                        item[`${row.field}`]}
+                                  </td>
+                                ))}
+                              </tr>
+                            ))}
                         </tbody>
                       </table>
                     </div>

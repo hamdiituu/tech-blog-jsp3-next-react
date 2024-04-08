@@ -13,7 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 // TODO: admin and client origins
-                registry.addMapping("/*").allowedOrigins("http://localhost:3000");
+                registry.addMapping("/*").allowedOrigins("http://localhost:5173");
             }
         };
     }

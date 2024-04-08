@@ -5,10 +5,11 @@ export interface TableResponse<T> {
   totalPage: number;
   totalRecord: number;
   query?: string;
+  errorMessage?: string;
 }
 
 export interface TableRequest {
-  page?: number;
-  limit?: number;
-  query?: string;
+  page: number;
+  limit: number;
+  query: string | null;
 }

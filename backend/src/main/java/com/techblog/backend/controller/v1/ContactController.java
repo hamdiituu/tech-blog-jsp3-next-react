@@ -17,11 +17,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/v1/contact")
 @Tag(name = "Contact v1.0", description = "It is used for users to contact.")
+@CrossOrigin("*")
 public class ContactController {
 
     @Autowired
@@ -37,7 +39,7 @@ public class ContactController {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
             response.setErrorMessage(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(response);
         }
     }
@@ -50,7 +52,7 @@ public class ContactController {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body("İletişim formunuz başarıyla ulaşmıştır.En kısa sürede dönüş yapılacaktır.");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Form kaydedilirken bir sorun oluştu: " + e.getMessage());
         }
     }
