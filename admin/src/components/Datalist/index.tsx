@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface SideItem {
   onClick?: () => void;
@@ -69,8 +69,11 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                 <div className="mail-box">
                   {props.sideItems && (
                     <aside className="sm-side">
-                      {props.sideItems.map((sideItem,sideIndex) => (
-                        <ul  key={sideIndex} className="nav nav-pills nav-stacked labels-category inbox-divider">
+                      {props.sideItems.map((sideItem, sideIndex) => (
+                        <ul
+                          key={sideIndex}
+                          className="nav nav-pills nav-stacked labels-category inbox-divider"
+                        >
                           {sideItem.label && (
                             <li>
                               <h5>
@@ -80,14 +83,16 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                               </h5>
                             </li>
                           )}
-                          {sideItem.children?.map((sideChild,sideChildIndex) => (
-                            <li key={sideChildIndex}>
-                              <a href="#" onClick={sideChild.onClick}>
-                                <i className="fa fa-circle"></i>{" "}
-                                {sideChild.label}
-                              </a>
-                            </li>
-                          ))}
+                          {sideItem.children?.map(
+                            (sideChild, sideChildIndex) => (
+                              <li key={sideChildIndex}>
+                                <a href="#" onClick={sideChild.onClick}>
+                                  <i className="fa fa-circle"></i>{" "}
+                                  {sideChild.label}
+                                </a>
+                              </li>
+                            )
+                          )}
                         </ul>
                       ))}
                     </aside>
@@ -96,10 +101,7 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                     <div className="inbox-head">
                       {props.title && <h3>{props.title}</h3>}
                       {props.searchable && (
-                        <form
-                          action="#"
-                          className="pull-right position search_inbox"
-                        >
+                        <div className="pull-right position search_inbox">
                           <div className="input-append">
                             <input
                               name="query"
@@ -108,6 +110,11 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                               placeholder={
                                 props.searchPlaceHolder ?? "Tablo içinde ara"
                               }
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  onSearchSubmit(); // Enter tuşu basılınca onSubmitFunc fonksiyonunu çağır
+                                }
+                              }}
                               onChange={(e) => {
                                 setQuery(e.target.value);
                               }}
@@ -120,12 +127,12 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                               <i className="fa fa-search"></i>
                             </button>
                           </div>
-                        </form>
+                        </div>
                       )}
                     </div>
                     <div className="inbox-body">
                       <div className="mail-option">
-                        {props.filters?.map((filter,index) => (
+                        {props.filters?.map((filter, index) => (
                           <div className="btn-group">
                             <a
                               key={index}
@@ -149,8 +156,11 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                             </a>
                             {filter.items && (
                               <ul className="dropdown-menu">
-                                {filter.items.map((item,itemIndex) => (
-                                  <li key={itemIndex} style={{ cursor: "pointer" }}>
+                                {filter.items.map((item, itemIndex) => (
+                                  <li
+                                    key={itemIndex}
+                                    style={{ cursor: "pointer" }}
+                                  >
                                     <a onClick={item.onClick}>
                                       <i className={item.icon}></i>
                                       {item.label}

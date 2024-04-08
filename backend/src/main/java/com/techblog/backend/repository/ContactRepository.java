@@ -9,6 +9,6 @@ import org.springframework.data.domain.Pageable;
 import com.techblog.backend.model.Contact;
 
 public interface ContactRepository extends JpaRepository<Contact, Long> {
-    @Query(nativeQuery = true, value = "SELECT * FROM contact WHERE name regexp :searchTerm OR email regexp :searchTerm OR subject regexp :searchTerm OR phone regexp :searchTerm OR message regexp :searchTerm")
+    @Query(nativeQuery = true, value = "SELECT * FROM contact WHERE LOWER(name) regexp LOWER(:searchTerm) OR LOWER(email) regexp LOWER(:searchTerm) OR LOWER(subject) regexp LOWER(:searchTerm) OR LOWER(phone) regexp LOWER(:searchTerm) OR LOWER(message) regexp LOWER(:searchTerm)")
     Page<Contact> findByRegex(@Param("searchTerm") String searchTerm, Pageable pageable);
 }
