@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Datalist from "../../components/Datalist";
-import { useFetchContactForms } from "./hooks/useContactForms";
+import {
+  useFetchContactForms,
+  useSetMarkAsReadedContactForms,
+} from "./hooks/useContactForms";
 import ContactForm from "./types/ContactForm";
 import { TableRequest } from "../../types/ApiTypes";
 import Modal from "../../components/Modal";
@@ -11,10 +14,39 @@ const ContactFormsPage = () => {
     limit: 100,
     query: null,
   });
-  const [selectedItem, setSelectedItem] = useState<ContactForm | null>(null);
+  const [selectedContacts, setSelectedContacts] = useState<ContactForm[]>([]);
+  const [selectedContact, setSelectedContact] = useState<ContactForm | null>(
+    null
+  );
   const [showModal, setShowModal] = useState<boolean>(false);
+
   const { isLoading, data, error, refetch, isRefetching, isError } =
     useFetchContactForms(req);
+
+  const { setMarkAsReaded } = useSetMarkAsReadedContactForms();
+
+  const handleMarkAsReaded = async () => {
+    if (selectedContacts) {
+      const ids: number[] = Array.from(selectedContacts).map(
+        (contact) => contact.id
+      );
+      await setMarkAsReaded(ids);
+      setSelectedContacts([]);
+      refetch();
+    }
+  };
+
+  const addSelectItem = (contact: ContactForm) => {
+    setSelectedContacts((prevContacts) => {
+      const isSelected = prevContacts.some((contact) => contact.id === contact.id);
+      if (isSelected) {
+
+        return prevContacts.filter((contact) => contact.id !== contact.id);
+      } else {
+        return [...prevContacts, contact];
+      }
+    });
+  };
 
   return (
     <div>
@@ -24,28 +56,29 @@ const ContactFormsPage = () => {
           <div>
             <p>
               Adı :
-              <span className="font-weight-bold">{selectedItem?.name}</span>
+              <span className="font-weight-bold">{selectedContact?.name}</span>
             </p>
             <p>
               E-Posta :
-              <span className="font-weight-bold">{selectedItem?.email}</span>
+              <span className="font-weight-bold">{selectedContact?.email}</span>
             </p>
             <p>
               Konu :
-              <span className="font-weight-bold">{selectedItem?.subject}</span>
+              <span className="font-weight-bold">
+                {selectedContact?.subject}
+              </span>
             </p>
             <p>
               Mesaj :
-              <span className="font-weight-bold">{selectedItem?.message}</span>
+              <span className="font-weight-bold">
+                {selectedContact?.message}
+              </span>
             </p>
           </div>
         }
         show={showModal}
         onClose={() => setShowModal(false)}
         footerButtons={[
-          <button key="save" className="btn btn-primary" onClick={() => {}}>
-            Okundu olarak işaretle
-          </button>,
           <button
             key="cancel"
             className="btn btn-secondary"
@@ -56,6 +89,8 @@ const ContactFormsPage = () => {
         ]}
       />
       <Datalist
+        selectable
+        selectedItems={selectedContacts}
         onSearched={(query) => {
           setReq({ ...req, query: query });
         }}
@@ -63,9 +98,7 @@ const ContactFormsPage = () => {
           console.log(page);
           setReq({ ...req, page });
         }}
-        onSelect={(item: ContactForm) => {
-          console.log(item);
-        }}
+        onSelect={addSelectItem}
         isError={isError}
         error={error}
         items={data?.items}
@@ -94,7 +127,7 @@ const ContactFormsPage = () => {
                 data-toggle="modal"
                 data-target="#contactFormModal"
                 onClick={() => {
-                  setSelectedItem(item);
+                  setSelectedContact(item);
                   setShowModal(true);
                 }}
               >
@@ -113,6 +146,11 @@ const ContactFormsPage = () => {
           {
             icon: "fa fa-refresh",
             onClick: refetch,
+          },
+          {
+            icon: "fa fa-envelope",
+            onClick: handleMarkAsReaded,
+            label: "Okundu",
           },
           // {
           //   label: "Tümü",

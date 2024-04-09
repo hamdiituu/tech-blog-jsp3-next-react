@@ -10,6 +10,8 @@ import {
 } from "./pages";
 import Template from "./components/Template";
 import { AuthProvider } from "./contexts/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = createRoot(document.getElementById("root")!);
 
@@ -55,9 +57,15 @@ const router = createBrowserRouter([
 ]);
 
 root.render(
-  <AuthProvider>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} fallbackElement={<p>Yükleniyor...</p>} />
-    </QueryClientProvider>
-  </AuthProvider>
+  <div>
+    <ToastContainer />
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider
+          router={router}
+          fallbackElement={<p>Yükleniyor...</p>}
+        />
+      </QueryClientProvider>
+    </AuthProvider>
+  </div>
 );

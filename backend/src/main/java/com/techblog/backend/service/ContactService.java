@@ -1,5 +1,6 @@
 package com.techblog.backend.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -57,6 +58,16 @@ public class ContactService {
 
         return tableResponseDTO;
 
+    }
+
+    public void markContactsAsReaded(List<Long> ids) {
+        if (ids != null) {
+            List<Contact> contacts = contactRepository.findAllById(ids);
+            for (Contact contact : contacts) {
+                contact.setReaded(true);
+            }
+            contactRepository.saveAll(contacts);
+        }
     }
 
 }

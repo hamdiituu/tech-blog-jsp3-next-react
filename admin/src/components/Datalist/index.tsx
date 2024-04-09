@@ -38,6 +38,7 @@ interface DatalistProps<T> {
   onSearched?: (query: string | null) => void;
   onChangePage?: (page: number) => void;
   onSelect?: (item: T) => void;
+  selectedItems?: T[];
 }
 
 const Datalist = <T extends object>(props: DatalistProps<T>) => {
@@ -139,7 +140,9 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                             <a
                               className="btn mini blue "
                               onClick={filter.onClick}
-                              {...(filter.items && { "data-toggle": "dropdown" })}
+                              {...(filter.items && {
+                                "data-toggle": "dropdown",
+                              })}
                             >
                               {filter.icon && (
                                 <i
@@ -253,6 +256,14 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                                             props.onSelect(item);
                                           }
                                         }}
+                                        checked={
+                                          props.selectedItems?.find(
+                                            (selectedItem) =>
+                                              selectedItem == item
+                                          )
+                                            ? true
+                                            : false
+                                        }
                                         type="checkbox"
                                         className="custom-control-input"
                                         id={`checbox-datalist-${itemIndex}`}
