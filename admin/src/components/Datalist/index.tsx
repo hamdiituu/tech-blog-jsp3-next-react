@@ -139,6 +139,7 @@ const Datalist = <T extends object>(props: DatalistProps<T>) => {
                             <a
                               className="btn mini blue "
                               onClick={filter.onClick}
+                              {...(filter.items && { "data-toggle": "dropdown" })}
                             >
                               {filter.icon && (
                                 <i
