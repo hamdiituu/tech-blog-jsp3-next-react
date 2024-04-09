@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.techblog.backend.dto.api.TableRequestDTO;
@@ -41,7 +42,8 @@ public class ContactService {
         int page = Optional.ofNullable(tableRequestDTO.getPage()).orElse(0);
         int limit = Optional.ofNullable(tableRequestDTO.getLimit()).orElse(100);
 
-        Pageable pageable = PageRequest.of(page, limit);
+        Sort sort = Sort.by(Sort.Direction.ASC, "isReaded");
+        Pageable pageable = PageRequest.of(page, limit,sort);
 
         Page<Contact> items;
         if (tableRequestDTO.getQuery() != null && !tableRequestDTO.getQuery().isEmpty()) {
