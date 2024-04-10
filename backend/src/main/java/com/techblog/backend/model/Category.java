@@ -20,9 +20,11 @@ public class Category {
     private String name;
 
     @Column(nullable = false)
+    private String slug;
+
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
     private boolean isActive;
- 
 }

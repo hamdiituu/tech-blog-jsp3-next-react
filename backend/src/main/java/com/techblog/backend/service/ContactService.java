@@ -3,6 +3,7 @@ package com.techblog.backend.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,11 +19,10 @@ import com.techblog.backend.repository.ContactRepository;
 @Service
 public class ContactService {
 
-    private final ContactRepository contactRepository;
+    @Autowired
+    private ContactRepository contactRepository;
 
-    public ContactService(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
-    }
+
 
     public void createContactForm(CreateContactFromDTO createContactFromDTO) {
         Contact contact = new Contact();
