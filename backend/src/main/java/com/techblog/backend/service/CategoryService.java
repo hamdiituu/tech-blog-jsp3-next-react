@@ -52,6 +52,7 @@ public class CategoryService {
         if (updateCategoryDTO.getDescription() != null) {
             existingCategory.setDescription(updateCategoryDTO.getDescription());
         }
+       
         existingCategory.setActive(updateCategoryDTO.isActive()); // isActive özelliğini güncelle
 
         return categoryRepository.save(existingCategory);
@@ -67,7 +68,7 @@ public class CategoryService {
         int page = Optional.ofNullable(tableRequestDTO.getPage()).orElse(0);
         int limit = Optional.ofNullable(tableRequestDTO.getLimit()).orElse(100);
 
-        Sort sort = Sort.by(Sort.Direction.ASC, "isReaded");
+        Sort sort = Sort.by(Sort.Direction.ASC, "isActive");
         Pageable pageable = PageRequest.of(page, limit,sort);
 
         Page<Category> items;

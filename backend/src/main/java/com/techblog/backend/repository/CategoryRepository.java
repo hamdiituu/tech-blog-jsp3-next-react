@@ -13,7 +13,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM category WHERE LOWER(name) regexp LOWER(:searchTerm) OR LOWER(slug) regexp LOWER(:searchTerm) OR LOWER(description) regexp LOWER(:searchTerm)")
     Page<Category> findByRegex(@Param("searchTerm") String searchTerm, Pageable pageable);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM category  WHERE isActive = true")
+    @Query(nativeQuery = true, value = "SELECT * FROM category  WHERE is_active = true")
     List<Category> findByActive(boolean active);
 
 }
